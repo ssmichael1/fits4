@@ -1,0 +1,16 @@
+[package]
+name = "fits4"
+version = "0.1.0"
+edition = "2021"
+description = "Pure Rust FITS v4.0 reader/writer"
+license = "MIT"
+
+[dependencies.image]
+version = "0.25"
+optional = true
+
+[features]
+image = ["dep:image"]
+
+[profile.test]
+opt-level = 3
