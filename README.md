@@ -105,6 +105,11 @@ fits2.primary().verify_datasum()?;
 # Ok::<(), fits4::Error>(())
 ```
 
+## Not supported
+
+- **Tile-compressed images** (`ZIMAGE`, Rice/GZIP/HCOMPRESS) — use [`fpack`/`funpack`](https://heasarc.gsfc.nasa.gov/fitsio/fpack/) to decompress externally
+- **Random groups** (deprecated in FITS v4.0)
+
 ## Feature flags
 
 | Flag | Description |

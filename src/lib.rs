@@ -10,6 +10,8 @@
 //! - **ASCII TABLE extension** — Aw, Iw, Fw.d, Ew.d, Dw.d column formats
 //! - **BINTABLE extension** — all type codes including variable-length arrays (P/Q descriptors)
 //!
+//! Tile-compressed images (`ZIMAGE`) and random groups are not supported.
+//!
 //! ## Quick start — reading
 //!
 //! ```no_run
