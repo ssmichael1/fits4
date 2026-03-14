@@ -14,14 +14,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          lfs: true
 
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
 
       - uses: Swatinem/rust-cache@v2
+
+      - name: Cache sample FITS files
+        id: cache-samples
+        uses: actions/cache@v4
+        with:
+          path: samp
+          key: fits4-samples-v1
+
+      - name: Download sample FITS files
+        if: steps.cache-samples.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p samp
+          BASE=https://storage.googleapis.com/fits4_samples
+          for f in \
+            EUVEngc4151imgx.fits \
+            FGSf64y0106m_a1f.fits \
+            FOCx38i0101t_c0f.fits \
+            IUElwp25637mxlo.fits \
+            WFPC2u5780205r_c0fx.fits; do
+            curl -sSfL "$BASE/$f" -o "samp/$f"
+          done
 
       - name: Clippy
         run: cargo clippy --all-targets --features image -- -D warnings
